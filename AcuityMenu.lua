@@ -65,6 +65,30 @@ function Acuity.setupMenu()
 				Acuity.hideOutOfCombat()
 			end
 		},
+		{
+			type = "colorpicker",
+			name = "Available Color",
+			tooltip = "Color of timer when Acuity proc is available",
+			warning = "Color changes go into effect next time timer changes color",
+			getFunc = function() return unpack(Acuity.savedVars.COLORS.UP) end,
+			setFunc = function(r,g,b,a) Acuity.savedVars.COLORS.UP = {r,g,b,a} end,
+		},
+		{
+			type = "colorpicker",
+			name = "Active Color",
+			tooltip = "Color of timer when Acuity proc is currently active",
+			warning = "Color changes go into effect next time timer changes color",
+			getFunc = function() return unpack(Acuity.savedVars.COLORS.PROC) end,
+			setFunc = function(r,g,b,a) Acuity.savedVars.COLORS.PROC = {r,g,b,a} end,
+		},
+		{
+			type = "colorpicker",
+			name = "Cooldown Color",
+			tooltip = "Color of timer when Acuity proc is currently on cooldown",
+			warning = "Color changes go into effect next time timer changes color",
+			getFunc = function() return unpack(Acuity.savedVars.COLORS.DOWN) end,
+			setFunc = function(r,g,b,a) Acuity.savedVars.COLORS.DOWN = {r,g,b,a} end,
+		},
 	}
 
 	LAM:RegisterOptionControls(Acuity.name.."Options", options)

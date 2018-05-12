@@ -4,7 +4,7 @@ local Acuity = Acuity
 local EM		= GetEventManager()
 
 Acuity.name		= "Acuity"
-Acuity.version		= "1.5"
+Acuity.version		= "1.7"
 Acuity.varVersion 	= "1"
 
 Acuity.ID 		= 99204
@@ -14,11 +14,24 @@ Acuity.active		= false
 
 Acuity.UPDATE_INTERVAL	= 100
 
+Acuity.COLORS = {
+	["UP"] = {
+		0, 1, 0,
+	},
+	["PROC"] = {
+		0.26, 0.74, 0.96,
+	},
+	["DOWN"] = {
+		1, 0, 0,
+	}
+}
+
 Acuity.defaults	= {
 	["offsetX"]	= 500,
 	["offsetY"]	= 500,
 	["timerSize"]	= 48,
 	["passiveHide"]	= false,
+	["COLORS"]	= Acuity.COLORS,
 }
 
 function Acuity.setPos()
@@ -53,7 +66,7 @@ function Acuity.countDown()
 	elseif not Acuity.active and (Acuity.downTime - GetGameTimeMilliseconds()/1000 > 0) then
 		AcuityFrameTime:SetText(string.format("%.1f", Acuity.time(Acuity.downTime)))
 	else
-		AcuityFrameTime:SetColor(0, 1, 0)
+		AcuityFrameTime:SetColor(unpack(Acuity.savedVars.COLORS.UP))
 		AcuityFrameTime:SetText("0.0")
 		EM:UnregisterForUpdate(Acuity.name.."Update")
 	end
@@ -67,11 +80,11 @@ function Acuity.start(_, changeType, _, _, _, _, endTime)
 	if changeType == EFFECT_RESULT_GAINED then
 		EM:RegisterForUpdate(Acuity.name.."Update", Acuity.UPDATE_INTERVAL, Acuity.countDown)
 		Acuity.endTime = endTime
-		AcuityFrameTime:SetColor(0.26, 0.74, 0.96)
+		AcuityFrameTime:SetColor(unpack(Acuity.savedVars.COLORS.PROC))
 		Acuity.active = true
 	elseif changeType == EFFECT_RESULT_FADED then
 		Acuity.downTime = GetGameTimeMilliseconds()/1000 + 13	-- 13 seconds after proc ends
-		AcuityFrameTime:SetColor(1, 0, 0)
+		AcuityFrameTime:SetColor(unpack(Acuity.savedVars.COLORS.DOWN))
 		Acuity.active = false
 	end
 end
@@ -85,6 +98,7 @@ function Acuity.Init(event, addon)
 	Acuity.setFontSize(Acuity.savedVars.timerSize)
 	Acuity.setPos()
 	AcuityFrame:SetHidden(IsReticleHidden())
+	AcuityFrameTime:SetColor(unpack(Acuity.savedVars.COLORS.UP))
 
 	Acuity.setupMenu()
 	Acuity.hideOutOfCombat()
