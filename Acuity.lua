@@ -4,7 +4,7 @@ local Acuity = Acuity
 local EM		= GetEventManager()
 
 Acuity.name		= "Acuity"
-Acuity.version		= "1.8"
+Acuity.version		= "1.9"
 Acuity.varVersion 	= "1"
 
 Acuity.ID 		= 99204
@@ -62,7 +62,15 @@ end
 
 function Acuity.countDown()
 	if Acuity.active then
-		AcuityFrameTime:SetText(string.format("%.1f", Acuity.time(Acuity.endTime)))
+		local time = Acuity.time(Acuity.endTime)
+		if time <= 0 then
+			Acuity.downTime = GetGameTimeMilliseconds()/1000 + 13	-- 13 seconds after proc ends
+			AcuityFrameTime:SetColor(unpack(Acuity.savedVars.COLORS.DOWN))
+			Acuity.active = false
+			return
+		else
+			AcuityFrameTime:SetText(string.format("%.1f", time))
+		end
 	elseif not Acuity.active and (Acuity.downTime - GetGameTimeMilliseconds()/1000 > 0) then
 		AcuityFrameTime:SetText(string.format("%.1f", Acuity.time(Acuity.downTime)))
 	else
