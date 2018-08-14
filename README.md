@@ -2,7 +2,7 @@
 > A customizable tracker for the Mechanical Aquity proc in ESO.
 
 [![Generic badge](https://img.shields.io/badge/Download-ESOUI-blue.svg)](http://www.esoui.com/downloads/info1950-Acuity.html)
-[![Generic badge](https://img.shields.io/badge/Version-1.9-green.svg)](https://github.com/Wheel5/Acuity#release-history)
+[![Generic badge](https://img.shields.io/badge/Version-1.10-green.svg)](https://github.com/Wheel5/Acuity#release-history)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Wheel5/Acuity/graphs/commit-activity)
 [![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
 
@@ -29,6 +29,8 @@ Once installed, navigate to the settings window for options to reposition, resiz
 The timer will automatically start tracking your Acuity procs when one occurs, no additional setup is necessary.
 
 ## Release History
+* Version 1.10
+  * API bump
 * Version 1.9
   * Fix for issue where sometimes the timer would go into the negatives
 * Version 1.8

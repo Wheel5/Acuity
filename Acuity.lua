@@ -4,7 +4,7 @@ local Acuity = Acuity
 local EM		= GetEventManager()
 
 Acuity.name		= "Acuity"
-Acuity.version		= "1.9"
+Acuity.version		= "1.10"
 Acuity.varVersion 	= "1"
 
 Acuity.ID 		= 99204
