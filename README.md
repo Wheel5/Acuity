@@ -2,8 +2,8 @@
 > A customizable tracker for the Mechanical Aquity proc in ESO.
 
 [![Generic badge](https://img.shields.io/badge/Download-ESOUI-blue.svg)](http://www.esoui.com/downloads/info1950-Acuity.html)
-[![Generic badge](https://img.shields.io/badge/Version-1.10-green.svg)](https://github.com/Wheel5/Acuity#release-history)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Wheel5/Acuity/graphs/commit-activity)
+[![Generic badge](https://img.shields.io/badge/Version-2.0-green.svg)](https://github.com/Wheel5/Acuity#release-history)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-Yes-green.svg)](https://github.com/Wheel5/Acuity/graphs/commit-activity)
 [![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
 
 This tracker gives a timer for the amount of time left on a current proc, the time left before the next proc is available, and a default state showing that a proc is currently available. Each state can be color coded, and the timer itself can be repositioned and resized as needed.
@@ -29,6 +29,9 @@ Once installed, navigate to the settings window for options to reposition, resiz
 The timer will automatically start tracking your Acuity procs when one occurs, no additional setup is necessary.
 
 ## Release History
+* Version 2.0
+  * Update for Wrathstone
+  * Frames hidden if Acuity isn't being worn
 * Version 1.10
   * API bump
 * Version 1.9

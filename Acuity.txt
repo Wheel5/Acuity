@@ -1,27 +1,14 @@
-## Title: |c42BCF4Acuity|r
+## Title: |c42BCF4A|rcuity
 ## Description: Tracks your Acuity uptime and downtime
 ## Author: Wheels
-## Version: 1.10
-## APIVersion: 100024
+## Version: 2.0
+## APIVersion: 100026
 ## SavedVariables: AcuitySavedVars
-## OptionalDependsOn: LibAddonMenu-2.0
+## OptionalDependsOn: LibAddonMenu-2.0 LibStub
 
-libs/LibStub/LibStub.lua
 libs/LibCustomTitles/LibTitleLocale.lua
 libs/LibCustomTitles/LibCustomTitles.lua
 libs/LibCustomTitles/Titles/Wheels.lua
-libs/LibAddonMenu-2.0/LibAddonMenu-2.0.lua
-libs/LibAddonMenu-2.0\controls\panel.lua
-libs/LibAddonMenu-2.0\controls\submenu.lua
-libs/LibAddonMenu-2.0\controls\checkbox.lua
-libs/LibAddonMenu-2.0\controls\colorpicker.lua
-libs/LibAddonMenu-2.0\controls\editbox.lua
-libs/LibAddonMenu-2.0\controls\header.lua
-libs/LibAddonMenu-2.0\controls\slider.lua
-libs/LibAddonMenu-2.0\controls\dropdown.lua
-libs/LibAddonMenu-2.0\controls\iconpicker.lua
-libs/LibAddonMenu-2.0\controls\button.lua
-
 Acuity.lua
 AcuityMenu.lua
 Acuity.xml

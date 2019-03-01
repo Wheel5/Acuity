@@ -7,7 +7,7 @@ function Acuity.setupMenu()
 	local panelData = {
 		type = "panel",
 		name = Acuity.name,
-		displayName = Acuity.name,
+		displayName = "|c42BCF4A|rcuity",
 		author = "Wheels",
 		version = ""..Acuity.version,
 		registerForRefresh = true
@@ -32,10 +32,10 @@ function Acuity.setupMenu()
 					AcuityFrame:SetMovable(true)
 					AcuityFrame:SetMouseEnabled(true)
 				else
-					EVENT_MANAGER:RegisterForEvent(Acuity.name.."Hide", EVENT_RETICLE_HIDDEN_UPDATE, Acuity.hideFrame)
 					AcuityFrame:SetHidden(IsReticleHidden())
 					AcuityFrame:SetMovable(false)
 					AcuityFrame:SetMouseEnabled(false)
+					Acuity.gearUpdate()
 				end
 			end
 		},

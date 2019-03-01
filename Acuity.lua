@@ -4,7 +4,7 @@ local Acuity = Acuity
 local EM		= GetEventManager()
 
 Acuity.name		= "Acuity"
-Acuity.version		= "1.10"
+Acuity.version		= "2.0"
 Acuity.varVersion 	= "1"
 
 Acuity.ID 		= 99204
@@ -46,6 +46,7 @@ function Acuity.savePos()
 end
 
 function Acuity.hideOutOfCombat()
+	if not Acuity.equipCheck() then return end
 	if Acuity.savedVars.passiveHide then 
 		AcuityFrame:SetHidden(not IsUnitInCombat("player"))
 	end
@@ -58,6 +59,29 @@ end
 
 function Acuity.setFontSize(size)
 	AcuityFrameTime:SetFont(string.format('%s|%d|%s', '$(CHAT_FONT)', size, 'soft-shadow-thick'))
+end
+
+function Acuity.equipCheck()
+	local g = 0
+	_,_,_,g = GetItemLinkSetInfo("|H1:item:131105:370:50:54484:370:50:0:0:0:0:0:0:0:0:1:65:1:1:0:462:0|h|h", true)
+	if g >= 3 then return true end
+	return false
+end
+
+function Acuity.gearUpdate()
+	if Acuity.equipCheck() then
+		Acuity.hideFrame()
+		EM:RegisterForEvent(Acuity.name.."Hide", EVENT_RETICLE_HIDDEN_UPDATE, Acuity.hideFrame)
+		EM:RegisterForEvent(Acuity.name.."PassiveHide", EVENT_PLAYER_COMBAT_STATE, Acuity.hideOutOfCombat)
+		EM:RegisterForEvent(Acuity.name, EVENT_EFFECT_CHANGED, Acuity.start)
+		EM:AddFilterForEvent(Acuity.name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, Acuity.ID)
+		EM:AddFilterForEvent(Acuity.name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG, "player")
+	else
+		AcuityFrame:SetHidden(true)
+		EM:UnregisterForEvent(Acuity.name.."Hide", EVENT_RETICLE_HIDDEN_UPDATE)
+		EM:UnregisterForEvent(Acuity.name.."PassiveHide", EVENT_PLAYER_COMBAT_STATE)
+		EM:UnregisterForEvent(Acuity.name, EVENT_EFFECT_CHANGED)
+	end
 end
 
 function Acuity.countDown()
@@ -111,11 +135,10 @@ function Acuity.Init(event, addon)
 	Acuity.setupMenu()
 	Acuity.hideOutOfCombat()
 
-	EM:RegisterForEvent(Acuity.name.."Hide", EVENT_RETICLE_HIDDEN_UPDATE, Acuity.hideFrame)
-	EM:RegisterForEvent(Acuity.name.."PassiveHide", EVENT_PLAYER_COMBAT_STATE, Acuity.hideOutOfCombat)
-	EM:RegisterForEvent(Acuity.name, EVENT_EFFECT_CHANGED, Acuity.start)
-	EM:AddFilterForEvent(Acuity.name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, Acuity.ID)
-	EM:AddFilterForEvent(Acuity.name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG, "player")
+	Acuity.gearUpdate()
+
+	EM:RegisterForEvent(Acuity.name.."GearUpdate", EVENT_INVENTORY_SINGLE_SLOT_UPDATE, Acuity.gearUpdate)
+	EM:AddFilterForEvent(Acuity.name.."GearUpdate", EVENT_INVENTORY_SINGLE_SLOT_UPDATE, REGISTER_FILTER_BAG_ID, BAG_WORN)
 
 end
 
